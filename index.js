@@ -23,16 +23,19 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_WEBHOOKS,
       ]
     })
-const {readdirSync} = require("fs")
-const db = require('quick.db')
-const ms = require("ms")
-const { MessageEmbed } = require('discord.js')
-const {login } = require("./util/login.js");
-login(process.env.TOKEN)
+
+const { readdirSync } = require("fs");
+const db = require('quick.db');
+const ms = require("ms");
+const { MessageEmbed } = require('discord.js');
+const { login } = require("./util/login.js");
+
+login(process.env.TOKEN);
+
 process.on("unhandledRejection", err => {
-   if(err.message) return
-  console.error("Uncaught Promise Error: ", err);
-})
+  console.error("Erreur de promesse non capturée : ", err);
+});
+
 const loadCommands = (dir = "./commands/") => {
     readdirSync(dir).forEach(dirs => {
       const commands = readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith(".js"));
