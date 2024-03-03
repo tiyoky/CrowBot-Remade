@@ -28,7 +28,7 @@ const db = require('quick.db')
 const ms = require("ms")
 const { MessageEmbed } = require('discord.js')
 const {login } = require("./util/login.js");
-login(client)
+login(process.env.TOKEN)
 process.on("unhandledRejection", err => {
    if(err.message) return
   console.error("Uncaught Promise Error: ", err);
